@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('app:startup');
 const config = require('config');
 const logger = require('./logger')
 const authenticator = require('./authenticator')
@@ -19,9 +20,8 @@ console.log(`password: ${config.get('mail.password')}`);
 
 if (app.get('env') === 'development') {
     app.use(morgan('tiny'));
-    console.log('morgan bisa');
+    debug('morgan bisa');
 }
-
 
 app.use(logger);
 app.use(authenticator);
