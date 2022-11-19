@@ -1,23 +1,21 @@
+const mongoose = require('mongoose');
 const express = require('express');
+const {Genre, validate} = require('../models/genre');
+const boolean = require('joi/lib/types/boolean');
 const router = express.Router();
 
-const genres = [
-    {id: 1, name: 'genre1'},
-    {id: 2, name: 'genre2'},
-    {id: 3, name: 'genre3'}
-];
-
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const genres = await Genre.find().sort('name');
     res.send(genres);
 });
 
-router.get('/:id', (req, res) => {
-    const genre = genres.find(c => c.id === parseInt(req.params.id));
+router.get('/:id', async (req, res) => {
+    const genre = await Genre.findById(req.params.id);
     if(!genre) res.status(404).send('gaada coursenya');
     res.send(genre);
 });
 
-router.post('/',  (req,res) => {
+router.post('/',  async (req,res) => {
     const { error } = validate(req.body);
 
     if (error) {
@@ -25,47 +23,33 @@ router.post('/',  (req,res) => {
         return;
     }
     
-    const genre = {
-        id: genres.length+1,
+    let genre = new Genre({
         name: req.body.name
-    }
-    genres.push(genre);
+    });
+    genre = await genre.save();
     res.send(genre);
 });
 
-router.put('/:id', (req, res) => {
-    // cari course apakah ada
-    const genre = genres.find(c => c.id === parseInt(req.params.id));
-    if(!genre) return res.status(404).send('gaada coursenya');
-
+router.put('/:id', async (req, res) => {
     const { error } = validate(req.body);
-
     if (error) {
-        res.status(400).send(error.details[0].message);
-        return;
+        return res.status(400).send(error.details[0].message);
     }
 
-    genre.name = req.body.name;
-    res.send(genre);
-});
+    // cari course apakah ada
+    const genre = await Genre.findByIdAndUpdate(req.params.id, {name: req.body.name}, {
+        new: true
+    })
 
-router.delete('/:id', (req, res) => {
-    const genre = genres.find(c => c.id === parseInt(req.params.id));
     if(!genre) return res.status(404).send('gaada coursenya');
-
-    const index = genres.indexOf(genre);
-    genres.splice(index,1);
-
     res.send(genre);
 });
 
+router.delete('/:id', async (req, res) => {
+    const genre = await Genre.findByIdAndRemove(req.params.id);
 
-function validate(genre) {
-    const schema = {
-        name: Joi.string().min(3).required()
-    };
-
-    return Joi.validate(genre, schema);
-}
+    if(!genre) return res.status(404).send('gaada coursenya');
+    res.send(genre);
+});
 
 module.exports = router;
