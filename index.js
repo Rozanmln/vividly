@@ -10,6 +10,8 @@ const customers = require('./routes/customers');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 const home = require('./routes/home');
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const func = require('joi/lib/types/func');
 
 mongoose.connect('mongodb://127.0.0.1/vividly')

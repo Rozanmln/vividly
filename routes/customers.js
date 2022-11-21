@@ -16,12 +16,12 @@ router.post('/',  async (req,res) => {
         return;
     }
     
-    let customers = new Customer({
+    const customers = new Customer({
         name: req.body.name,
         phone: req.body.phone,
         isGold: req.body.isGold
     });
-    customers = await customers.save();
+    await customers.save();
     res.send(customers);
 });
 
