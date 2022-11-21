@@ -35,12 +35,6 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
             dailyRentalDate: {
                 type: Number,
                 default: false
-            },
-            phone: {
-                type: String,
-                required: true,
-                minlength: 5,
-                maxlength: 255
             }
         }),
         required: true
