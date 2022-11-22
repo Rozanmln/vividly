@@ -36,6 +36,10 @@ app.use('/', home);
 
 console.log(`app name: ${config.get('name')}`);
 console.log(`mail name: ${config.get('mail.host')}`);
+if(!config.get('jwtPrivatekey')) {
+    console.error('fatal eror: jwt private key tidak ada');
+    process.exit(1);
+}
 
 if (app.get('env') === 'development') {
     debug('lagi nge-dev');

@@ -2,6 +2,7 @@ const {Rental, validate} = require('../models/rental');
 const express = require('express');
 const { Movie } = require('../models/movie');
 const { Customer } = require('../models/customer');
+const auth = require('../middleware/authenticator')
 const mongoose = require('mongoose');
 const Fawn = require('fawn');
 const router = express.Router();
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
     res.send(rentals);
 });
 
-router.post('/',  async (req,res) => {
+router.post('/', auth, async (req,res) => {
     const { error } = validate(req.body);
 
     if (error) {
@@ -107,7 +108,7 @@ router.get('/:id', async (req, res) => {
 //     res.send(rentals);
 // });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     const rentals = await Rental.findByIdAndRemove(req.params.id);
 
     if(!rentals) return res.status(404).send('gaada movie');
