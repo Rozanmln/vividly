@@ -2,7 +2,8 @@ const {Movie, validate} = require('../models/movie');
 const mongoose = require('mongoose');
 const express = require('express');
 const { Genre } = require('../models/genre');
-const auth = require('../middleware/authenticator')
+const auth = require('../middleware/authorize')
+const admin = require('../middleware/admin');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -66,7 +67,7 @@ router.put('/:id', auth, async (req, res) => {
     res.send(movies);
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     const movies = await Movie.findByIdAndRemove(req.params.id);
 
     if(!movies) return res.status(404).send('gaada movie');

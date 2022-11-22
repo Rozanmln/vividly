@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const debug = require('debug')('app:startup');
 const config = require('config');
 const logger = require('./middleware/logger')
-const authenticator = require('./middleware/authenticator')
 const app = express();
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
@@ -46,8 +45,6 @@ if (app.get('env') === 'development') {
 }
 
 app.use(logger);
-app.use(authenticator);
-
 // xxx
 
 const port = process.env.PORT || 3000;
