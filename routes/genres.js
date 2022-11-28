@@ -7,6 +7,7 @@ const admin = require('../middleware/admin');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+    throw new Error('gabisa dapet genre');
     const genres = await Genre.find().sort('name');
     res.send(genres);
 });

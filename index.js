@@ -1,8 +1,12 @@
+require('express-async-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const debug = require('debug')('app:startup');
 const config = require('config');
+const winston = require('winston');
+require('winston-mongodb');
 const logger = require('./middleware/logger')
+const error = require('./middleware/error');
 const app = express();
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
@@ -15,9 +19,12 @@ const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const func = require('joi/lib/types/func');
 
-mongoose.connect('mongodb://127.0.0.1/vividly')
+mongoose.connect('mongodb://127.0.0.1/vividly', {useUnifiedTopology:true})
     .then(() => console.log('bisa connect'))
     .catch(err => console.error('gak bisa connect'));
+
+winston.add(new winston.transports.File({filename: 'logfile.log'}));
+winston.add(new winston.transports.MongoDB({db: 'mongodb://127.0.0.1/vividly'}));
 
 // ADVANCE TOPIC EXPRESS
 app.use(express.json());
@@ -31,6 +38,7 @@ app.use('/api/rentals', rentals);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/', home);
+app.use(error);
 
 
 console.log(`app name: ${config.get('name')}`);
