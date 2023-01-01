@@ -1,7 +1,9 @@
 const winston = require('winston');
 const mongoose = require('mongoose');
+const config = require('config');
 
 module.exports = function() {
-    mongoose.connect('mongodb://127.0.0.1/vividly', {useUnifiedTopology:true})
-    .then(() => winston.info('bisa connect'));
+    const db = config.get('db')
+    mongoose.connect(db, {useUnifiedTopology:true})
+    .then(() => winston.info(`bisa connect ke ${db}...`));
 }
