@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const {Genre, validate} = require('../models/genre');
 const boolean = require('joi/lib/types/boolean');
+const validateObjectId = require('../middleware/validateObjectId');
 const auth = require('../middleware/authorize');
 const admin = require('../middleware/admin');
 const router = express.Router();
@@ -11,7 +12,7 @@ router.get('/', async (req, res) => {
     res.send(genres);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
     const genre = await Genre.findById(req.params.id);
     if(!genre) res.status(404).send('gaada coursenya');
     res.send(genre);
