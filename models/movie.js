@@ -20,7 +20,7 @@ const Movie = mongoose.model('Movie', new mongoose.Schema({
         min: 0,
         max: 255
     },
-    dailyRentalDate: {
+    dailyRentalRate: {
         type: Number,
         required: true,
         min: 0,
