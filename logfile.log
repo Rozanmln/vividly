@@ -2068,3 +2068,19 @@
 {"code":"ERR_HTTP_HEADERS_SENT","level":"error","message":"Cannot set headers after they are sent to the client Cannot set headers after they are sent to the client","stack":"Error: Cannot set headers after they are sent to the client\n    at new NodeError (node:internal/errors:372:5)\n    at ServerResponse.setHeader (node:_http_outgoing:576:11)\n    at ServerResponse.header (D:\\document backup\\Belajar_Ngoding\\vividly\\node_modules\\express\\lib\\response.js:794:10)\n    at ServerResponse.send (D:\\document backup\\Belajar_Ngoding\\vividly\\node_modules\\express\\lib\\response.js:174:12)\n    at send (D:\\document backup\\Belajar_Ngoding\\vividly\\routes\\genres.js:18:9)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"}
 {"level":"info","message":"port 3000"}
 {"code":"ERR_HTTP_HEADERS_SENT","level":"error","message":"Cannot set headers after they are sent to the client Cannot set headers after they are sent to the client","stack":"Error: Cannot set headers after they are sent to the client\n    at new NodeError (node:internal/errors:372:5)\n    at ServerResponse.setHeader (node:_http_outgoing:576:11)\n    at ServerResponse.header (D:\\document backup\\Belajar_Ngoding\\vividly\\node_modules\\express\\lib\\response.js:794:10)\n    at ServerResponse.send (D:\\document backup\\Belajar_Ngoding\\vividly\\node_modules\\express\\lib\\response.js:174:12)\n    at send (D:\\document backup\\Belajar_Ngoding\\vividly\\routes\\genres.js:18:9)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+{"level":"info","message":"port 3000"}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly..."}
+{"level":"info","message":"port 3000"}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly..."}
+{"level":"info","message":"port 3000"}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly..."}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly..."}
+{"level":"info","message":"port 3000"}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly..."}
+{"level":"info","message":"port 3000"}
+{"level":"info","message":"port 3000"}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly_tests..."}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly_tests..."}
+{"level":"info","message":"bisa connect ke mongodb://127.0.0.1/vividly_tests..."}
+{"level":"info","message":"port 3000"}
+{"code":"ERR_HTTP_HEADERS_SENT","level":"error","message":"Cannot set headers after they are sent to the client Cannot set headers after they are sent to the client","stack":"Error: Cannot set headers after they are sent to the client\n    at new NodeError (node:internal/errors:371:5)\n    at ServerResponse.setHeader (node:_http_outgoing:576:11)\n    at ServerResponse.header (D:\\document backup\\Belajar_Ngoding\\vividly\\node_modules\\express\\lib\\response.js:794:10)\n    at ServerResponse.send (D:\\document backup\\Belajar_Ngoding\\vividly\\node_modules\\express\\lib\\response.js:174:12)\n    at send (D:\\document backup\\Belajar_Ngoding\\vividly\\routes\\genres.js:18:9)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"}
